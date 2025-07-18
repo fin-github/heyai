@@ -19,12 +19,7 @@ class Paths:
     backend = os.path.join(src, "backend")
     wrapper = os.path.join(src, "wrapper")
     
-    @property
-    def dist():
-        path = os.path.join(os.curdir, "dist")
-        
-        if not os.path.isdir(path): os.mkdir("dist")
-        return path
+    dist = os.path.join(os.curdir, "dist")
 
 ## Build Process
 
