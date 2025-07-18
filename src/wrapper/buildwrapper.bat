@@ -1,0 +1,1 @@
+go build -o heyai.exe main.go
