@@ -4,7 +4,7 @@ from sys import argv
 from icecream import ic
 
 def main(args: list):
-    ...
+    print("HeyAI by Fin")
     
     
 if __name__ == "__main__":
