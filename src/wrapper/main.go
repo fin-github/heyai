@@ -20,5 +20,7 @@ func main() {
 
 	var command = "py " + backendPath + " " + formattedArgs
 
-	exec.Command(command)
+	var runner = exec.Command(command)
+
+	runner.Run()
 }
