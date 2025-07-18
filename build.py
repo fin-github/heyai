@@ -15,11 +15,13 @@ console.print(Panel(
 assert input("> ") == "y", "Add to Path required"
 
 class Paths:
-    src = os.path.join(os.curdir, "src")
+    root = os.curdir
+    
+    src = os.path.join(root, "src")
     backend = os.path.join(src, "backend")
     wrapper = os.path.join(src, "wrapper")
     
-    dist = os.path.abspath(os.path.join(os.curdir, "dist"))
+    dist = os.path.abspath(os.path.join(root, "dist"))
 
 ## Build Process
 
@@ -31,7 +33,12 @@ if os.path.isdir(Paths.dist): # check if dist is already created
         console.print("[red][bold]FATAL:[/bold][/red] Build Process ended. Overwriting ./dist/ declined.")
         quit()
     
-    os.remove(Paths.dist)
+    try:
+        os.remove(Paths.dist)
+    except PermissionError:
+        os.chdir(os.P)
+        os.system("del dist /Q")
+        
     console.print("[green]./dist/ deleted.[/green]")
 
 shutil.copytree(Paths.backend, Paths.dist)
