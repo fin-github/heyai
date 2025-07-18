@@ -9,7 +9,7 @@ import (
 )
 
 func get_backend() string {
-	return "backend/heyai.py"
+	return "heyai.py"
 }
 
 func main() {
