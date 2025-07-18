@@ -18,9 +18,9 @@ func main() {
 	var formattedArgs = strings.Join(args, " ")
 	var backendPath = get_backend()
 
-	var command = "py " + backendPath + " " + formattedArgs
+	var command = "py " + backendPath
 
-	var runner = exec.Command(command)
+	var runner = exec.Command(command, formattedArgs)
 
 	runner.Run()
 }
