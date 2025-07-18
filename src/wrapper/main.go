@@ -6,6 +6,7 @@ import (
 	"os"
 	"os/exec"
 	"strings"
+	"fmt"
 )
 
 func get_backend() string {
@@ -15,5 +16,8 @@ func get_backend() string {
 func main() {
     var args = os.Args[1:]
 
-	exec.Command(get_backend(), strings.Join(args, " "))
+	var formattedArgs = strings.Join(args, " ")
+	var backendPath = get_backend()
+
+	exec.Command("py " + backendPath + " " + formattedArgs)
 }
