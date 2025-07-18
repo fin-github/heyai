@@ -28,6 +28,8 @@ class Paths:
     wrapper = os.path.join(src, "wrapper")
     
     dist = os.path.abspath(os.path.join(root, "dist"))
+    
+    dist_backend = os.path.join(dist, "backend")
 
 ## Build Process
 
@@ -48,4 +50,4 @@ if os.path.isdir(Paths.dist): # check if dist is already created
         
     console.print("[green]./dist/ deleted.[/green]")
 
-shutil.copytree(Paths.backend, Paths.dist)
+shutil.copytree(Paths.backend, Paths.dist_backend)
