@@ -1,4 +1,4 @@
 mkdir dist
 
 
-go build -o dist/heyai.exe src/wrapper/main.go
+go build -o %1 src/wrapper/main.go
