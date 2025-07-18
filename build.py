@@ -5,6 +5,12 @@ import shutil
 import os
 from rich.panel import Panel
 from rich.text import Text
+from sys import argv
+
+try:
+    quickBuild = argv[1] == "!q"
+except IndexError:
+    quickBuild = False
 
 console = rich.get_console()
 
@@ -12,7 +18,7 @@ console.print(Panel(
     "[red]WARNING:[/red] This [blue]will[/blue] add to path.\nType [green]y[/green] to [blue]accept[/blue]."
 ))
 
-assert input("> ") == "y", "Add to Path required"
+if not quickBuild: assert input("> ") == "y", "Add to Path required"
 
 class Paths:
     root = os.curdir
@@ -29,14 +35,15 @@ class Paths:
 
 if os.path.isdir(Paths.dist): # check if dist is already created
     console.print("[red]WARNING:[/red] ./dist/ already exists. Are you sure you want to override it?\n[green]y[/green] to continue.")
-    if not input("> ").lower() == "y":
-        console.print("[red][bold]FATAL:[/bold][/red] Build Process ended. Overwriting ./dist/ declined.")
-        quit()
+    if not quickBuild:
+        if not input("> ").lower() == "y":
+            console.print("[red][bold]FATAL:[/bold][/red] Build Process ended. Overwriting ./dist/ declined.")
+            quit()
     
     try:
         os.remove(Paths.dist)
     except PermissionError:
-        os.chdir(os.P)
+        os.chdir(Paths.root)
         os.system("del dist /Q")
         
     console.print("[green]./dist/ deleted.[/green]")
