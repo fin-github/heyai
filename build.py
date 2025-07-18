@@ -1,6 +1,8 @@
 # Builds heyai to be ready for use
 
 import rich
+import shutil
+import os
 from rich.panel import Panel
 from rich.text import Text
 
@@ -11,4 +13,21 @@ console.print(Panel(
 ))
 
 assert input("> ") == "y", "Add to Path required"
+
+class Paths:
+    src = os.path.join(os.curdir, "src")
+    backend = os.path.join(src, "backend")
+    wrapper = os.path.join(src, "wrapper")
     
+    @property
+    def dist():
+        path = os.path.join(os.curdir, "dist")
+        
+        if not os.path.isdir(path): os.mkdir("dist")
+        return path
+
+## Build Process
+
+### Move current backend to dist/
+
+shutil.copytree(Paths.backend, Paths.dist)
