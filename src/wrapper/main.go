@@ -6,7 +6,6 @@ import (
 	"os"
 	"os/exec"
 	"strings"
-	"fmt"
 )
 
 func get_backend() string {
