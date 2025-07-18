@@ -44,7 +44,7 @@ if os.path.isdir(Paths.dist): # check if dist is already created
         os.remove(Paths.dist)
     except PermissionError:
         os.chdir(Paths.root)
-        os.system("del dist /Q")
+        os.system("rmdir dist /Q")
         
     console.print("[green]./dist/ deleted.[/green]")
 
