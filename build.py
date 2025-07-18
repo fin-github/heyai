@@ -19,10 +19,19 @@ class Paths:
     backend = os.path.join(src, "backend")
     wrapper = os.path.join(src, "wrapper")
     
-    dist = os.path.join(os.curdir, "dist")
+    dist = os.path.abspath(os.path.join(os.curdir, "dist"))
 
 ## Build Process
 
 ### Move current backend to dist/
+
+if os.path.isdir(Paths.dist): # check if dist is already created
+    console.print("[red]WARNING:[/red] ./dist/ already exists. Are you sure you want to override it?\n[green]y[/green] to continue.")
+    if not input("> ").lower() == "y":
+        console.print("[red][bold]FATAL:[/bold][/red] Build Process ended. Overwriting ./dist/ declined.")
+        quit()
+    
+    os.remove(Paths.dist)
+    console.print("[green]./dist/ deleted.[/green]")
 
 shutil.copytree(Paths.backend, Paths.dist)
