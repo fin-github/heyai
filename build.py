@@ -54,3 +54,10 @@ shutil.copytree(Paths.backend, Paths.dist_backend)
 
 
 ## Build Process for the wrapper
+
+console.print("[green]Building wrapper...[/green]")
+if os.path.isfile(os.path.join(Paths.root, "buildwrapper.bat")):
+    os.system(str(os.path.join(Paths.root, "buildwrapper.bat")))
+else:
+    os.system(f"go build -o dist/heyai.exe src/wrapper/main.go")
+console.print("[green]Wrapper built![/green]")
